@@ -1,0 +1,37 @@
+//Lab 3: Problem #3
+#include <iostream>
+#include <list>
+
+class Node{
+    private:
+        char value;
+        Node* next;
+        
+    public:
+        Node():value(), next(NULL){};
+        Node(char val): value(val), next(NULL){};
+    };
+    
+void reversal(Node* pointer){
+    if (pointer == NULL){
+        return;
+    }
+    List<int> reversed_list;
+    
+    reversed_list.push_front(reversal(pointer->next));
+}
+
+
+int main(){
+    List<int> alpha;
+    
+    push_back(1);
+    push_back(2);
+    push_back(3);
+    
+    for (list<int>::iterator j = alpha.begin(); j != alpha.end(); ++j)
+        cout << ' ' << *j;
+    cout << endl;
+
+    return 0;
+}

@@ -1,0 +1,9 @@
+#include <iostream>
+
+int program (int input){
+    int product = 1;
+    int second_product = 2;
+    if (product > input)
+        return product;
+    
+    product * second_product

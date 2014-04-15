@@ -1,0 +1,26 @@
+// Name: Kevin Chan
+// CS 14 Lab Section: Tue 8:10AM - 11:00AM
+// Problem # 3: Copying a list L into another list P by only traversing L once.
+
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+int main(){
+    list <int> L, P;
+    
+    L.push_back(100);
+    L.push_back(15);
+    L.push_back(17);
+    L.push_back(1);
+    
+    //Reversing the List
+    for (list<int>::iterator i = L.begin(); i != L.end(); ++i){
+        P.push_front(i);
+    }
+    
+    //Printing it out
+    for (list<int>::iterator j = P.begin(); j != P.end(); ++j)
+        cout << ' ' << *j;
+    cout << '\n';

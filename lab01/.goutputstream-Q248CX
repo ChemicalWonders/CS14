@@ -1,0 +1,23 @@
+#include <iostream>
+#include <algorithm>
+
+int main(){
+    int a, b = 0;
+    
+    cout << "Enter a integer: ";
+    cin >> a;
+    cout << endl;
+    
+    cout << "Enter another integer: ";
+    cin >> b;
+    cout << endl;
+    
+    cout << "Your current numbers are " << A << "and " << B << "." << endl;
+    
+    swap(a, b);
+    
+    cout << "Your numbers are now reversed.";
+    cout << "A is " << A << "and B is " << B;
+    
+    return 0;
+}
