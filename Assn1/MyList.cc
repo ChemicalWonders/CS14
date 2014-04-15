@@ -1,3 +1,22 @@
+//  =============== BEGIN ASSESSMENT HEADER ================
+/// @file assignment01/MyList.cc
+/// @brief Assignment 1 for CS 14 Spring 2014
+///
+/// @author Kevin Chan [kchan039@ucr.edu]
+/// @date April 15, 2014
+///
+/// @par Enrollment Notes 
+///     Lecture Section: 01
+/// @par
+///     Lab Section: 21
+/// @par
+///     TA: John Cross
+///
+/// @par Plagiarism Section
+/// I hereby certify that the code in this file
+/// is ENTIRELY my own original work.
+//  =============== END ASSESSMENT HEADER ==================
+
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
@@ -35,6 +54,9 @@ MyList::MyList(const char* str):head(NULL){
 
 // Destructor
 MyList::~MyList(){
+    if (head == NULL){
+        return;
+    }
 	while(head->next != NULL){
 		pop_front();
 	}
@@ -42,6 +64,7 @@ MyList::~MyList(){
 
 
 //Mutators
+//ALL COMPLETED
 
 //Inserts value at the front of the list
 void MyList::push_front(char value){
@@ -93,28 +116,39 @@ void MyList::pop_back(){
 //Swaps the value of the node at position i in the list
 //with the value of the node at position j
 //HANDLE OUT-OF-RANGE CALLS
-//NEED TO FIX
+// I am going to assume that you never call a negative number. :]
 void MyList::swap(int i, int j){
     Node* temp = head;
     Node* secondTemp= head;
     int alpha = 0;
     int beta = 0;
     
-    if (i > size()|| j > size()){
+    if (i > size() || j > size()){
         cout << "OUT OF RANGE; EXITING NOW.";
         cout << endl;
-        exit(1);
+        return;
     }
-    while(temp->next != NULL){
-        while(secondTemp -> next != NULL){
-            if (j == beta){
+    
+    if (temp->next == NULL || secondTemp -> next == NULL){
+        //~ cout << "returning" << endl;
+        return;
+    }
+    while(temp != NULL){
+        secondTemp = head;
+        beta = 0;
+        //~ cout << "I got here. Alpha is: " << alpha << endl;
+        while(secondTemp != NULL){
+            if (j == beta && i == alpha){
                 std::swap(secondTemp->value, temp->value);
+                //~ cout << "swapping values" << endl;
             }
+            //~ cout << "Beta is changing. Beta: " << beta << endl;
             secondTemp = secondTemp->next;
             ++beta;
         }
-        temp = temp->next;
         ++alpha;
+        temp = temp->next;
+        
     }
 }
 
@@ -145,17 +179,25 @@ void MyList::insert_at_pos(int i, char value){
 }
 
 //Reverses the items in the list.
-//NEED TO FIX
 void MyList::reverse(){
-	MyList A;
-    Node* temp = this->head;
-    while(temp != NULL){
-        A.push_front(temp->value);
-        temp = temp->next;
-    }
-    head = A.head;
+    reverse(head);
 }
 
+//Private Helper Function for reverse()
+Node* MyList::reverse(Node * n){
+    if (n == 0){
+        return 0;
+    }
+    else if (n->next == 0){
+        head->next = 0;
+        head = n;
+        return n;
+    }
+    else{
+        reverse(n->next)->next  = n;
+        return n;
+    }
+}
 
 //Accessors
 
@@ -191,6 +233,11 @@ int MyList::find(char value) const{
 	
 	int valuePosition = 0;
 	Node* temp = head;
+    if (temp == NULL)
+    {
+        cout << "Nothing in empty list" << endl;
+        return -1;
+    }
     char matchedValue = temp -> value;
 	while(temp != NULL){
 		
@@ -208,7 +255,34 @@ int MyList::find(char value) const{
 // in the list and returns that position. If query_str is not in the list
 //the function returns -1.
 int MyList::find(MyList& query_str) const{
-	//TODO
+	Node* temp = head;
+    Node* secondTemp = query_str.head;
+    char values;
+    int position = 0;
+    if (temp == NULL){
+        cout << "Nothing to find" << endl;
+        return -1;
+    }
+    while(temp != NULL){
+        values = temp -> value;
+        //~ cout << "Values =: " << values;
+        
+        if(secondTemp->next == NULL){
+            //~ cout << "Returning now" << endl;
+            return position;
+        }
+        
+        if (secondTemp->value == values){
+            //~ cout << "Found one! going to find the next one!" << endl;
+            secondTemp = secondTemp->next;
+            --position;
+        }
+        ++position;
+        temp = temp->next;
+        //~ cout << "Gotta try again! " << endl;
+    }
+    
+    return -1;
 }
 
 
