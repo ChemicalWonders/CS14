@@ -305,19 +305,19 @@ MyList& MyList::operator=(const MyList& str){
 
 //Returns the character at position i
 char& MyList::operator[] (const int i){
-	int iNum = i;
-    
+	int iNum = i; 
     if (i > size()){
         cout << "SEGMENTATION FAULT PLEASE TRY AGAIN";
         exit(1);
     }
     
-	for (Node* j = head; head != NULL; j=j->next){
+	for (Node* j = head; head->next != NULL; j=j->next){
 		if(iNum == 0){
 			return j->value;
 		}
 		iNum--;
 	}
+	exit(1);
 }
 
 //Concatenates two list together, e.g. 11+ 12;
