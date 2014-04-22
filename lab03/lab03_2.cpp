@@ -5,24 +5,20 @@
 #include <list>
 using namespace std;
 
-Node& getNodeFromTail(Node A, int x){
-    int length = 0;
-    Node temp = A;
-    while(temp -> next != NULL){
-        temp = temp->next;
-        --length;
+int getNodeFromTail(int value, list<int> alpha){
+    alpha.reverse();
+    int a = alpha.size();
+    for (list<int>::iterator f = alpha.begin(); f != alpha.end(); ++f){
+    --a;
+        if (value == a){
+            return *f;
+        }
     }
-    int a = --length;
-    for(int beta = 0; beta < a; ++y){
-        A = A->next;
-    }
-    return head;
+     return -1;
 }
-
 int main(){
     list <int> A;
     int n = 0;
-    int b = 0;
     
     A.push_back(1);
     A.push_back(2);
@@ -40,14 +36,9 @@ int main(){
     cout << endl;
     
     cout << "The number is:";
-    b = A.size()-1;
-    for (list<int>::iterator j = A.end(); j != A.begin(); --j){
-        
-        if ((b) == n){
-            cout << " " << *j;
-        }
-        --b;
-    }
+    
+    cout << getNodeFromTail(n,A);
+
     cout << endl;
 
     return 0;
