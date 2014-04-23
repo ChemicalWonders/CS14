@@ -20,7 +20,7 @@ int main(int argc, char* argv []){
     WordLadder pass(dictionaryName);
     
     //Starts the program and outputs the WordLadder
-    //pass.outputLadder(startWord, endWord);
+    pass.outputLadder(startWord, endWord);
     
     return 0;
 }
