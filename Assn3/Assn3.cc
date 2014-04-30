@@ -27,6 +27,26 @@ template < typename Value >
 class Tree {
 
   class Node {  //  binary tree node
+  //int size(Node* n){
+      //int counter = 0;
+      //if (isLeaf()){
+          //return 1;
+      //}
+      //if (isExternal()){
+          //if (left != nil){
+              //counter += size(left);
+            //}
+            //else{
+                //counter += size(right);
+            //}
+      //if (isInternal()){
+          //counter += size(left);
+          //counter ++ size(right);
+      //}
+      
+      //return counter;
+  //}
+  
   public:
     Value value;
     int level;  // for Andersson trees
@@ -41,12 +61,11 @@ class Tree {
     bool isLeaf()     { return left == nil && right == nil; }
     int height() { 
       // returns the height of the subtree rooted at this node
-      // FILL IN
-      return 0;  // dummy return to suppress warnings
+      return level;
     }
     int size() {  
       // returns the size of the subtree rooted at this node, 
-      // FILL IN
+      //return size(*this);
       return 0;  // dummy return to suppress warnings
     }
   }; // Node
@@ -91,11 +110,14 @@ class Tree {
     }
  }
 
-  Node* atValue(int value) {
+  Node* atValue(unsigned value) {
     static vector<Node*> nodeValues;
     
     vectorInOrder(root, nodeValues);
-    
+    if (value > nodeValues.size()){
+        cout << "Value size is too big, exiting program.\n";
+        exit(0);
+    }
     return nodeValues.at(value);
  }
 
@@ -285,14 +307,7 @@ int main() {
     t.display();
     cerr << "done\n";
     t.okay();
-
-    //int k = myrand();
-    //cerr << "removing: " << k << endl;
-    //t.remove( k );
-    //cerr<< "Traversing: " << ++n << "\n";
-    //t.display();
-    //cerr << "Done\n";
-    //t.okay();
+    
   }
     //t.remove(3);
     
@@ -302,10 +317,16 @@ int main() {
     
     cout << "[0] is equal to: " << t[0] << endl;
     cout << "[4] is equal to: " << t[4] << endl;
+    
     cout << "Size is: " << t.size() << endl;
     cout << "Find(3) is equal to: " << t.search(3) << endl;
     cout << "Find(0) is equal to: " << t.search(0) << endl;
 
+    //Stuff that might break the program
+    
+    cout << "Find (1000000) is equal to: " << t.search(1000000) << endl;
+    cout << "[1000] is equal to: " << t[1000] << endl;
+    
 } // main
 
 #endif
