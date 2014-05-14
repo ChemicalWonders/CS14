@@ -1,0 +1,33 @@
+//=================================================================
+// Course: CS 14 Spring 2014
+//
+// First name: Kevin
+// Last name: Chan
+// Course username: kchan039
+// Email address: kchan039@ucr.edu
+//
+// Lecture section: 001
+// Lab section: 021
+// TA: John Cross
+//
+// Assignment: Binary Search Tree
+//
+// I hereby certify that the code in this file
+// is ENTIRELY my own original work.
+//=================================================================
+
+Assn 3 is compilable. 
+I did not do Node::height and Node::size because I didn't use it for my tree functions.
+
+I spent most of my time trying to figure out how to make pre-post and in order functions
+to work.
+I was able to complete all of the required tree functions with private helper functions.
+
+When you use search, it returns either 1(TRUE) or 0(FALSE)
+
+When you use [], it will return the value of the number. If you go out of bounds,
+it will display an error message then exit the program.
+
+pre-post and in order functions should work.
+
+Size will display the total size of the actual tree.

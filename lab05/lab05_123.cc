@@ -10,7 +10,7 @@
 // Lab section: 021
 // TA: John Cross
 //
-// Assignment: Binary Search Tree
+// Assignment: Binary Search Tree LAB EDITION
 //
 // I hereby certify that the code in this file
 // is ENTIRELY my own original work.
@@ -204,6 +204,49 @@ public:
       root = remove( X, root );
       --count;
     }
+    
+//LAB PROBLEM # 1
+  int record_average(Node* n){
+      int count = 0;
+      int number = 0;
+    
+      if (n = NULL){
+        return 0;
+      }
+    
+      count += n-> value;
+      number += 1;
+      record_average(n -> left);
+      record_average(n ->right);
+    
+      return count/number;
+  }
+  
+  //LAB Problem #3
+  int num (Node* n){
+      if (n==NULL)
+        return 0;
+    
+      return 1+num(n ->left) + num (n -> right);
+  }
+  
+  //LAB PROBLEM #5
+  int leaves(Node* root){
+    Node* temp = root;
+    if(root-> left == NULL && root -> right ==NULL)
+        return 1;
+        
+    if (root -> left != NULL && root -> right == NULL)
+        return leaves(temp->left);
+    
+    if (root -> left == NULL && root -> right != NULL)
+        return leaves(temp-> right);
+        
+    return leaves(temp -> left) + leaves(temp -> right);
+  }
+
+
+
     
   Node* remove( Value X, Node* T ) {
     // The normal binary-tree removal procedure ...       

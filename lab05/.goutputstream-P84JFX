@@ -205,6 +205,33 @@ public:
       --count;
     }
     
+//LAB PROBLEM # 1
+  int record_average(Node* n){
+      int count = 0;
+      int number = 0;
+    
+      if (n = null){
+        return 0;
+      }
+    
+      count += n-> value;
+      number += 1;
+      record_average(n -> left);
+      record_average(n ->right);
+    
+      return count/number;
+  }
+  
+  // Problem #3
+  int num (Node* n){
+      if (n==NULL)
+        return 0;
+    
+      return 1+num(n ->left) + num (n -> right);
+  }
+
+
+    
   Node* remove( Value X, Node* T ) {
     // The normal binary-tree removal procedure ...       
     // Weiss's code is faster but way more intricate.

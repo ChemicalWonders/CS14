@@ -1,0 +1,8 @@
+Name: Kevin Chan
+Lab: 8AM to 11AM
+
+mymap.h - includes the file that I was supposed to modify for
+
+main.cc - test harness
+
+Everything should work. I believe it searchs for everything in O(n) time.

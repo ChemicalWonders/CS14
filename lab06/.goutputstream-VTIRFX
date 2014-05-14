@@ -1,0 +1,59 @@
+// Kevin Chan
+// Lab #6 
+// TA: John Cross
+
+/* Problem # 1
+You can choose 4 keys that chooses through 3 with m possible buckets, so the resulting answer will be 
+[4(m-1)/m^3] */
+
+
+/* Problem #6.
+int hash(const string & key, int tableize)
+{
+    return (key[0] + 27*key[1] + 729*key[2]) % tablesize;
+}
+
+
+
+int hash(const string & key, int tablesize)
+{
+    int hashval = 0;
+    for (int i = 0; i<key.length(); i++)
+        hashval += key[ i ];
+        
+    return hashval % tablesize ;
+}
+
+The con of the the first function is that the algorithm is the same for every
+string. This will most likely cause many functions to have the same key value.
+It also assumed that the string, key, is at least a size of 3 which is a con.
+
+The con of the second function is the map size is constant. Since it will
+never expand, it is bound to have collisions eventually. This may also
+potentially lead to slower runtime.
+*/
+
+#include "hash.h"
+
+using namespace std;
+
+int main() {
+
+    hashMap h;
+
+    h.insert(1, "hello");
+    h.insert(2, "my");
+    h.insert(3, "name");
+    h.insert(4, "is");
+    h.insert(5, "bob");
+    h.insert(6, "help");
+    h.insert(7, "me");
+    h.insert(8, "conquer");
+    h.insert(9, "the");
+    h.insert(10, "world");
+    h.insert(11, "test");
+    h.insert(1, "bye");
+    
+    h.rehash();
+
+}

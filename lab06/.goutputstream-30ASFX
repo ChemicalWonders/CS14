@@ -1,0 +1,106 @@
+#include "hash.h"
+
+using namespace std;
+
+hash::hash(int k, string s) {
+    //Inital Constructor
+    this->key = k;
+    this->data = s;
+}
+
+int hash::ki() {//returns key
+    return this->key;
+}
+
+string hash::unlock() {//returns data
+    return this->data;
+}
+
+hashMap::hashMap() {//constructor for table
+    sz = 100;//initial size
+    map = new hash*[sz];
+    for (int i = 0; i < sz; i++) {//all NULL
+        map[i] = NULL;
+    }
+}
+
+hashMap::~hashMap() {//destructor
+    for (int i = 0; i < sz; i++) {
+        if (map[i] != NULL)
+        delete map[i];
+    }
+}
+
+void hashMap::insert(int k, string s) {//hashes to table
+    int i = (k % sz);//hashing algorithm, always within range
+    
+    while (map[i] != NULL && map[i]->ki() != k) {//looks for free spot in table
+        i = (i + 1) % sz;//or until the key value is reached
+    }
+    
+    if (map[i] != NULL) {//clears the hash if taken for new hash
+        delete map[i];
+    }
+    
+    map[i] = new hash(k, s);
+}
+
+string hashMap::find(int l) { 
+    int L = (l % sz);//hashing algorithm
+    
+    if (map[L] == NULL) {//no correspondence to key
+        return "";
+    }
+    
+    else {
+        while (map[L] != NULL && map[L]->ki() != l) {//free spot or key value
+        L = (L+1) % sz;
+        }
+        
+        if (map[L] != NULL) {//if there is a corresponding value
+            return map[L]->unlock();
+        }
+        
+        else {//went out of bounds
+            cout << "out of bounds, exiting" << endl;
+            exit(1);
+        }
+    }
+}
+
+void hashMap::rehash() {//problem #2
+    hash** replacement = new hash*[sz * 2];//new table of double size
+    
+    for (int i = 0; i < sz; i++) {
+        if (map[i] != NULL) {
+            int k = map[i]->ki();//key value
+            string d = map[i]->unlock();//data value
+            
+            
+            
+            
+            int j = (k % (sz * 2));//hash algoithm with new size
+    
+            while (replacement[j] != NULL && replacement[j]->ki() != k) {
+                j = (j+1) % (sz * 2);
+            }
+            
+            replacement[j] = new hash(k, d);//moves everything to new table
+        }//also rehashes all the key's/indexes
+    }
+    
+    for (int i = 0; i < sz; i++) {//deletes the old table
+        if (map[i] != NULL) {
+            delete map[i];
+        }
+    }
+    
+    map = new hash*[sz * 2];//expands old table
+    sz = sz * 2;//doubles the sz
+    map = replacement;//moves all the values back in expanded table.
+    
+}
+
+int hashMap::size() {//returns size of table
+    return this->sz;
+}
