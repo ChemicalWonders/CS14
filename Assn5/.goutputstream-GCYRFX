@@ -1,0 +1,56 @@
+#ifndef __HASHMAP_H_
+#define __HASHMAP_H_
+
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+enum curStat{freed, active, deactivated};
+
+template <typename t>
+
+class Node{
+    public:
+        const string key;
+        t value;
+        curStat currentStatus;
+        
+    Node()
+    :currentStatus(freed){}
+    
+    Node(string k, t val)
+    :currentStatus(active), key(k), value(val)
+    {}
+    
+    }
+    
+class hashMap{
+    
+    private:
+        vector <Node <t> > mappedValues;
+        
+    public:
+        hashMap()
+        : mappedValues(103)
+        {}
+        
+        hashMap(hashMap &);
+        hashMap & operator = (hashmap &);
+        ~hashMap();
+        t& operator[] (string ki);
+        typename vector <Node <t>>::iterator find(int l);
+        
+        typename vector <Node <t>>::iterator begin(){
+            return mappedValues.begin();
+        }
+        
+        typename vector <Node <t>>::iterator end(){
+            return mappedValues.end();
+        }
+    }
+
+#endif

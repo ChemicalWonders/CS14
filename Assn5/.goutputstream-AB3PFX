@@ -1,0 +1,10 @@
+#include "assn5.h"
+
+using namespace std;
+
+int main(){
+    hashMap<int> A;
+    hashMap<int> B;
+
+    return 0;
+}
