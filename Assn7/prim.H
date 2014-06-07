@@ -37,7 +37,7 @@ bool operator<( Edge e1, Edge e2) {
 
 typedef set<Edge> Graph;
 
-Graph insertEdge (Edge a, Graph & g ) {
+void insertEdge (Edge a, Graph & g ) {
     g.insert(a);
 }
 
@@ -53,7 +53,7 @@ Graph prim (const Graph & g){
     
     results.insert(worklist.at(0));
     
-    for(int i = 1; i < worklist.size(); ++i){
+    for(unsigned i = 1; i < worklist.size(); ++i){
         if (results.find(worklist.at(i)) != results.end())
         {
             ++i;
